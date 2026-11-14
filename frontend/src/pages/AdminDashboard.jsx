@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ShieldAlert,
+  ShieldCheck,
   Trophy,
   Briefcase,
   Users,
-  Bookmark,
   DollarSign,
   Plus,
   Pencil,
@@ -14,7 +13,6 @@ import {
   Search,
   CheckCircle2,
   AlertCircle,
-  ExternalLink,
 } from 'lucide-react';
 import api from '../services/api';
 import AdminHackathonModal from '../components/AdminHackathonModal';
@@ -135,7 +133,7 @@ const AdminDashboard = () => {
 
   // Seeder
   const handleRunSeeder = async () => {
-    if (!window.confirm('This will repopulate initial hackathons and internships. Proceed?')) {
+    if (!window.confirm('This will repopulate verified collegiate hackathons and internships. Proceed?')) {
       return;
     }
 
@@ -170,21 +168,21 @@ const AdminDashboard = () => {
       {/* Top Banner */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-rose-400 text-xs font-bold uppercase tracking-wider mb-2">
-            <ShieldAlert className="w-4 h-4" />
+          <div className="flex items-center gap-1.5 text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
+            <ShieldCheck className="w-3.5 h-3.5" />
             <span>Administrator Control Center</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
             DevNexus Management Portal
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-slate-400 mt-1">
             Publish listings, update opportunities, monitor metrics, and manage verified events.
           </p>
         </div>
 
         {/* Database Status indicator */}
-        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs">
-          <Database className="w-4 h-4 text-purple-400" />
+        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900 border border-navy-800 text-xs">
+          <Database className="w-3.5 h-3.5 text-blue-400" />
           <span className="text-slate-300 font-semibold">
             Engine: {stats?.database?.mode || 'Active'}
           </span>
@@ -194,10 +192,10 @@ const AdminDashboard = () => {
       {/* Notifications */}
       {feedback.text && (
         <div
-          className={`flex items-center gap-2 p-4 rounded-2xl text-xs animate-in fade-in ${
+          className={`flex items-center gap-2 p-3.5 rounded-xl text-xs animate-in fade-in ${
             feedback.type === 'error'
-              ? 'bg-rose-500/10 border border-rose-500/30 text-rose-300'
-              : 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-300'
+              ? 'bg-rose-500/10 border border-rose-500/25 text-rose-300'
+              : 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-300'
           }`}
         >
           {feedback.type === 'error' ? (
@@ -211,76 +209,76 @@ const AdminDashboard = () => {
 
       {/* Analytics KPI Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="glass-panel rounded-2xl p-5">
-          <span className="text-xs text-slate-400 font-bold block mb-1 uppercase tracking-wider">
+        <div className="card-base p-5">
+          <span className="text-[11px] text-slate-400 font-bold block mb-1 uppercase tracking-wider">
             Total Students
           </span>
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-2xl font-bold text-white">
               {stats?.users?.students ?? 0}
             </span>
-            <Users className="w-6 h-6 text-purple-400" />
+            <Users className="w-5 h-5 text-blue-400" />
           </div>
-          <span className="text-[10px] text-slate-500 mt-1 block">
+          <span className="text-[11px] text-slate-400 mt-1 block">
             {stats?.users?.total ?? 0} total registered users
           </span>
         </div>
 
-        <div className="glass-panel rounded-2xl p-5">
-          <span className="text-xs text-slate-400 font-bold block mb-1 uppercase tracking-wider">
+        <div className="card-base p-5">
+          <span className="text-[11px] text-slate-400 font-bold block mb-1 uppercase tracking-wider">
             Hackathons
           </span>
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-2xl font-bold text-white">
               {stats?.hackathons?.total ?? 0}
             </span>
-            <Trophy className="w-6 h-6 text-purple-400" />
+            <Trophy className="w-5 h-5 text-blue-400" />
           </div>
-          <span className="text-[10px] text-emerald-400 mt-1 block font-semibold">
+          <span className="text-[11px] text-emerald-400 mt-1 block font-semibold">
             {stats?.hackathons?.open ?? 0} currently open
           </span>
         </div>
 
-        <div className="glass-panel rounded-2xl p-5">
-          <span className="text-xs text-slate-400 font-bold block mb-1 uppercase tracking-wider">
+        <div className="card-base p-5">
+          <span className="text-[11px] text-slate-400 font-bold block mb-1 uppercase tracking-wider">
             Internships
           </span>
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-2xl font-bold text-white">
               {stats?.internships?.total ?? 0}
             </span>
-            <Briefcase className="w-6 h-6 text-blue-400" />
+            <Briefcase className="w-5 h-5 text-blue-400" />
           </div>
-          <span className="text-[10px] text-emerald-400 mt-1 block font-semibold">
+          <span className="text-[11px] text-emerald-400 mt-1 block font-semibold">
             {stats?.internships?.active ?? 0} active openings
           </span>
         </div>
 
-        <div className="glass-panel rounded-2xl p-5">
-          <span className="text-xs text-slate-400 font-bold block mb-1 uppercase tracking-wider">
+        <div className="card-base p-5">
+          <span className="text-[11px] text-slate-400 font-bold block mb-1 uppercase tracking-wider">
             Prize Sum Pool
           </span>
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-black text-emerald-400">
+            <span className="text-2xl font-bold text-emerald-400">
               ${((stats?.hackathons?.totalPrizePool || 0) / 1000).toFixed(0)}K
             </span>
-            <DollarSign className="w-6 h-6 text-emerald-400" />
+            <DollarSign className="w-5 h-5 text-emerald-400" />
           </div>
-          <span className="text-[10px] text-slate-500 mt-1 block">
-            Across collegiate events
+          <span className="text-[11px] text-slate-400 mt-1 block">
+            Across verified jams
           </span>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center justify-between border-b border-slate-800 pb-3 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-navy-800 pb-3 gap-4">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setActiveTab('hackathons')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               activeTab === 'hackathons'
-                ? 'bg-purple-600 text-white shadow-glow-purple'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'text-slate-400 hover:text-white hover:bg-navy-900'
             }`}
           >
             <Trophy className="w-3.5 h-3.5" />
@@ -289,10 +287,10 @@ const AdminDashboard = () => {
 
           <button
             onClick={() => setActiveTab('internships')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               activeTab === 'internships'
-                ? 'bg-blue-600 text-white shadow-glow-blue'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'text-slate-400 hover:text-white hover:bg-navy-900'
             }`}
           >
             <Briefcase className="w-3.5 h-3.5" />
@@ -301,33 +299,33 @@ const AdminDashboard = () => {
 
           <button
             onClick={() => setActiveTab('database')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               activeTab === 'database'
-                ? 'bg-emerald-600 text-white'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'text-slate-400 hover:text-white hover:bg-navy-900'
             }`}
           >
             <Database className="w-3.5 h-3.5" />
-            <span>Database Tools</span>
+            <span>Platform Seeder</span>
           </button>
         </div>
 
         {activeTab === 'hackathons' && (
           <button
             onClick={handleCreateHackathon}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-purple-600 hover:bg-purple-500 shadow-glow-purple transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-sm transition-all"
           >
-            <Plus className="w-4 h-4" />
-            <span>Add Hackathon</span>
+            <Plus className="w-3.5 h-3.5" />
+            <span>Publish Hackathon</span>
           </button>
         )}
 
         {activeTab === 'internships' && (
           <button
             onClick={handleCreateInternship}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-glow-blue transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-sm transition-all"
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-3.5 h-3.5" />
             <span>Post Internship</span>
           </button>
         )}
@@ -343,16 +341,16 @@ const AdminDashboard = () => {
               value={hackSearch}
               onChange={(e) => setHackSearch(e.target.value)}
               placeholder="Search hackathons by title or organizer..."
-              className="w-full pl-9 pr-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-500"
+              className="w-full pl-9 pr-3 py-2 bg-navy-950 border border-navy-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
           </div>
 
-          <div className="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+          <div className="card-base overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-950/80 text-slate-400 uppercase font-bold tracking-wider border-b border-slate-800">
+                <thead className="bg-navy-950 text-slate-400 uppercase font-bold tracking-wider border-b border-navy-800">
                   <tr>
-                    <th className="py-3 px-4">Title & Organizer</th>
+                    <th className="py-3 px-4">Title & Host</th>
                     <th className="py-3 px-4">Format</th>
                     <th className="py-3 px-4">Prize Pool</th>
                     <th className="py-3 px-4">Deadline</th>
@@ -360,15 +358,15 @@ const AdminDashboard = () => {
                     <th className="py-3 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                <tbody className="divide-y divide-navy-800 text-slate-300">
                   {filteredHackathons.map((h) => (
-                    <tr key={h._id} className="hover:bg-slate-800/40 transition-colors">
+                    <tr key={h._id} className="hover:bg-navy-850 transition-colors">
                       <td className="py-3 px-4">
                         <div className="font-bold text-white text-sm">{h.title}</div>
                         <div className="text-slate-400 text-[11px]">{h.organizer}</div>
                       </td>
                       <td className="py-3 px-4">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold badge-blue">
                           {h.mode}
                         </span>
                       </td>
@@ -384,10 +382,10 @@ const AdminDashboard = () => {
                       </td>
                       <td className="py-3 px-4">
                         <span
-                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                          className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                             h.status === 'Open'
-                              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                              : 'bg-slate-800 text-slate-400'
+                              ? 'badge-emerald'
+                              : 'badge-slate'
                           }`}
                         >
                           {h.status}
@@ -397,14 +395,14 @@ const AdminDashboard = () => {
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleEditHackathon(h)}
-                            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white"
+                            className="p-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300 hover:text-white"
                             title="Edit Hackathon"
                           >
                             <Pencil className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => handleDeleteHackathon(h._id, h.title)}
-                            className="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-900/40 text-slate-300 hover:text-rose-400"
+                            className="p-1.5 rounded-lg bg-navy-800 hover:bg-rose-950/40 text-slate-300 hover:text-rose-400"
                             title="Delete Hackathon"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -430,32 +428,32 @@ const AdminDashboard = () => {
               value={internSearch}
               onChange={(e) => setInternSearch(e.target.value)}
               placeholder="Search internships by role or company..."
-              className="w-full pl-9 pr-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="w-full pl-9 pr-3 py-2 bg-navy-950 border border-navy-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
           </div>
 
-          <div className="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+          <div className="card-base overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-950/80 text-slate-400 uppercase font-bold tracking-wider border-b border-slate-800">
+                <thead className="bg-navy-950 text-slate-400 uppercase font-bold tracking-wider border-b border-navy-800">
                   <tr>
                     <th className="py-3 px-4">Role & Company</th>
                     <th className="py-3 px-4">Arrangement</th>
-                    <th className="py-3 px-4">Stipend</th>
+                    <th className="py-3 px-4">Compensation</th>
                     <th className="py-3 px-4">Deadline</th>
                     <th className="py-3 px-4">Status</th>
                     <th className="py-3 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                <tbody className="divide-y divide-navy-800 text-slate-300">
                   {filteredInternships.map((i) => (
-                    <tr key={i._id} className="hover:bg-slate-800/40 transition-colors">
+                    <tr key={i._id} className="hover:bg-navy-850 transition-colors">
                       <td className="py-3 px-4">
                         <div className="font-bold text-white text-sm">{i.title}</div>
                         <div className="text-slate-400 text-[11px]">{i.company}</div>
                       </td>
                       <td className="py-3 px-4">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/20">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold badge-blue">
                           {i.type}
                         </span>
                       </td>
@@ -471,10 +469,10 @@ const AdminDashboard = () => {
                       </td>
                       <td className="py-3 px-4">
                         <span
-                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                          className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                             i.status === 'Active'
-                              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                              : 'bg-slate-800 text-slate-400'
+                              ? 'badge-emerald'
+                              : 'badge-slate'
                           }`}
                         >
                           {i.status}
@@ -484,14 +482,14 @@ const AdminDashboard = () => {
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleEditInternship(i)}
-                            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white"
+                            className="p-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300 hover:text-white"
                             title="Edit Internship"
                           >
                             <Pencil className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => handleDeleteInternship(i._id, i.title)}
-                            className="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-900/40 text-slate-300 hover:text-rose-400"
+                            className="p-1.5 rounded-lg bg-navy-800 hover:bg-rose-950/40 text-slate-300 hover:text-rose-400"
                             title="Delete Internship"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -510,38 +508,38 @@ const AdminDashboard = () => {
       {/* Tab 3: Database Tools & Maintenance */}
       {activeTab === 'database' && (
         <div className="space-y-6">
-          <div className="glass-panel rounded-2xl p-6 sm:p-8 space-y-4">
+          <div className="card-base p-6 sm:p-8 space-y-4">
             <h2 className="text-base font-bold text-white flex items-center gap-2">
-              <Database className="w-5 h-5 text-emerald-400" />
-              <span>Platform Seeder & Mock Data Controls</span>
+              <Database className="w-4 h-4 text-blue-400" />
+              <span>Platform Seeder & Verified Opportunity Re-population</span>
             </h2>
             <p className="text-xs text-slate-400 leading-relaxed max-w-2xl">
-              Quickly reset or replenish the sample collegiate hackathons and tech internship listings in your current database or in-memory store.
+              Replenish official collegiate hackathon and top-tier software internship listings across Stanford, MIT, UC Berkeley, Stripe, Anthropic, Vercel, and Skydio.
             </p>
             <button
               onClick={handleRunSeeder}
               disabled={seeding}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-500 transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs text-white bg-blue-600 hover:bg-blue-500 transition-colors shadow-sm"
             >
-              <RefreshCw className={`w-4 h-4 ${seeding ? 'animate-spin' : ''}`} />
-              <span>{seeding ? 'Seeding Database...' : 'Repopulate Initial Platform Data'}</span>
+              <RefreshCw className={`w-3.5 h-3.5 ${seeding ? 'animate-spin' : ''}`} />
+              <span>{seeding ? 'Seeding Database...' : 'Repopulate Verified Opportunities'}</span>
             </button>
           </div>
 
           {/* Recent Users List */}
           {stats?.recentUsers && stats.recentUsers.length > 0 && (
-            <div className="glass-panel rounded-2xl p-6 space-y-4">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-300">
+            <div className="card-base p-6 space-y-4">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-slate-300">
                 Recent User Registrations
               </h2>
-              <div className="divide-y divide-slate-800/80 text-xs">
+              <div className="divide-y divide-navy-800 text-xs">
                 {stats.recentUsers.map((u) => (
                   <div key={u._id} className="py-3 flex items-center justify-between">
                     <div>
                       <p className="font-bold text-white">{u.name}</p>
-                      <p className="text-slate-500 text-[11px]">{u.email}</p>
+                      <p className="text-slate-400 text-[11px]">{u.email}</p>
                     </div>
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-purple-500/20 text-purple-300 capitalize">
+                    <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold badge-blue capitalize">
                       {u.role}
                     </span>
                   </div>

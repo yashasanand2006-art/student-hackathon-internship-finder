@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   User,
   GraduationCap,
-  Briefcase,
   Github,
   Linkedin,
   Globe,
@@ -11,7 +10,6 @@ import {
   Save,
   CheckCircle2,
   AlertCircle,
-  Sparkles,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -104,37 +102,37 @@ const ProfilePage = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider mb-2">
-          <User className="w-4 h-4" />
+        <div className="flex items-center gap-1.5 text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
+          <User className="w-3.5 h-3.5" />
           <span>Student Settings</span>
         </div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
           Developer Profile
         </h1>
-        <p className="text-sm text-slate-400 mt-1">
-          Keep your academic profile, developer links, and technical skillset up to date.
+        <p className="text-xs sm:text-sm text-slate-400 mt-1">
+          Keep your academic credentials, technical skills, and portfolio links updated for verified recruiters and hackathon teams.
         </p>
       </div>
 
       {/* Alerts */}
       {successMsg && (
-        <div className="flex items-center gap-2 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs mb-6 animate-in fade-in">
-          <CheckCircle2 className="w-5 h-5 shrink-0" />
+        <div className="flex items-center gap-2 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-xs mb-6 animate-in fade-in">
+          <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>{successMsg}</span>
         </div>
       )}
 
       {errorMsg && (
-        <div className="flex items-center gap-2 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs mb-6 animate-in fade-in">
-          <AlertCircle className="w-5 h-5 shrink-0" />
+        <div className="flex items-center gap-2 p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs mb-6 animate-in fade-in">
+          <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{errorMsg}</span>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-6">
         {/* Avatar Section */}
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-300">
+        <div className="card-base p-6 sm:p-8 space-y-4">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-300">
             Profile Avatar
           </h2>
           <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -143,10 +141,10 @@ const ProfilePage = () => {
                 formData.avatar ||
                 `https://ui-avatars.com/api/?name=${encodeURIComponent(
                   formData.name || 'User'
-                )}&background=7C3AED&color=fff&bold=true`
+                )}&background=1E293B&color=94A3B8&bold=true`
               }
               alt="Avatar"
-              className="w-20 h-20 rounded-2xl object-cover ring-4 ring-purple-500/30 shadow-glow-purple"
+              className="w-16 h-16 rounded-xl object-cover ring-2 ring-blue-500/30"
             />
             <div className="flex-1 w-full space-y-3">
               <span className="text-xs text-slate-400 block font-medium">
@@ -158,10 +156,10 @@ const ProfilePage = () => {
                     key={idx}
                     type="button"
                     onClick={() => setFormData({ ...formData, avatar: preset })}
-                    className={`relative rounded-xl overflow-hidden w-10 h-10 border-2 transition-transform hover:scale-105 ${
+                    className={`relative rounded-lg overflow-hidden w-9 h-9 border transition-transform hover:scale-105 ${
                       formData.avatar === preset
-                        ? 'border-purple-500 ring-2 ring-purple-500/40'
-                        : 'border-slate-700'
+                        ? 'border-blue-500 ring-2 ring-blue-500/40'
+                        : 'border-navy-700'
                     }`}
                   >
                     <img src={preset} alt="preset" className="w-full h-full object-cover" />
@@ -173,15 +171,15 @@ const ProfilePage = () => {
                 value={formData.avatar}
                 onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
                 placeholder="Or paste custom image URL..."
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-500"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
         </div>
 
         {/* Academic & Identity */}
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 space-y-5">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-300">
+        <div className="card-base p-6 sm:p-8 space-y-5">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-300">
             Academic & Contact Details
           </h2>
 
@@ -195,7 +193,7 @@ const ProfilePage = () => {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -207,7 +205,7 @@ const ProfilePage = () => {
                 type="email"
                 disabled
                 value={user?.email || ''}
-                className="w-full p-2.5 bg-slate-950/50 border border-slate-800 rounded-xl text-slate-500 cursor-not-allowed"
+                className="w-full p-2.5 bg-navy-950/50 border border-navy-800 rounded-xl text-slate-500 cursor-not-allowed"
               />
             </div>
           </div>
@@ -222,7 +220,7 @@ const ProfilePage = () => {
                 value={formData.university}
                 onChange={(e) => setFormData({ ...formData, university: e.target.value })}
                 placeholder="e.g. Stanford University"
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -235,7 +233,7 @@ const ProfilePage = () => {
                 value={formData.major}
                 onChange={(e) => setFormData({ ...formData, major: e.target.value })}
                 placeholder="e.g. Computer Science"
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -248,29 +246,29 @@ const ProfilePage = () => {
                 value={formData.gradYear}
                 onChange={(e) => setFormData({ ...formData, gradYear: e.target.value })}
                 placeholder="e.g. 2027"
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
 
           <div className="text-xs">
             <label className="block text-slate-300 font-semibold mb-1">
-              Short Bio / Elevator Pitch
+              Short Bio / Background
             </label>
             <textarea
               rows={3}
               value={formData.bio}
               onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
               placeholder="Tell hackathon organizers and internship recruiters about what you love building..."
-              className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
+              className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>
 
         {/* Skills Tag Manager */}
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-300">
-            Technical Skills & Technologies
+        <div className="card-base p-6 sm:p-8 space-y-4">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-300">
+            Technical Skillset
           </h2>
 
           <div className="flex items-center gap-2">
@@ -281,24 +279,24 @@ const ProfilePage = () => {
               onKeyDown={(e) => {
                 if (e.key === 'Enter') handleAddSkill(e);
               }}
-              placeholder="Type a skill (e.g. React, PyTorch, Docker) and press Add..."
-              className="flex-1 p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-500"
+              placeholder="Type a skill (e.g. TypeScript, PyTorch, Docker) and click Add..."
+              className="flex-1 p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
             <button
               type="button"
               onClick={handleAddSkill}
-              className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-purple-600 hover:bg-purple-500 transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 transition-colors"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add</span>
             </button>
           </div>
 
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-wrap gap-2 pt-1">
             {skills.map((skill) => (
               <span
                 key={skill}
-                className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-purple-600/20 text-purple-300 border border-purple-500/30"
+                className="flex items-center gap-1.5 px-3 py-1 rounded text-xs font-medium badge-blue"
               >
                 <span>{skill}</span>
                 <button
@@ -306,23 +304,23 @@ const ProfilePage = () => {
                   onClick={() => handleRemoveSkill(skill)}
                   className="hover:text-rose-400"
                 >
-                  <X className="w-3.5 h-3.5" />
+                  <X className="w-3 h-3" />
                 </button>
               </span>
             ))}
           </div>
         </div>
 
-        {/* Social / Developer Links */}
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-300">
+        {/* Developer Links */}
+        <div className="card-base p-6 sm:p-8 space-y-4">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-300">
             Developer Links & Portfolio
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
             <div>
               <label className="flex items-center gap-1.5 text-slate-300 font-semibold mb-1">
-                <Github className="w-3.5 h-3.5 text-purple-400" />
+                <Github className="w-3.5 h-3.5 text-slate-400" />
                 <span>GitHub URL</span>
               </label>
               <input
@@ -330,7 +328,7 @@ const ProfilePage = () => {
                 value={formData.githubUrl}
                 onChange={(e) => setFormData({ ...formData, githubUrl: e.target.value })}
                 placeholder="https://github.com/..."
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -344,21 +342,21 @@ const ProfilePage = () => {
                 value={formData.linkedinUrl}
                 onChange={(e) => setFormData({ ...formData, linkedinUrl: e.target.value })}
                 placeholder="https://linkedin.com/in/..."
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
               />
             </div>
 
             <div>
               <label className="flex items-center gap-1.5 text-slate-300 font-semibold mb-1">
                 <Globe className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Portfolio / Resume URL</span>
+                <span>Portfolio / Resume Link</span>
               </label>
               <input
                 type="url"
                 value={formData.portfolioUrl}
                 onChange={(e) => setFormData({ ...formData, portfolioUrl: e.target.value })}
                 placeholder="https://yourname.dev"
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -369,7 +367,7 @@ const ProfilePage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:brightness-110 shadow-glow-purple active:scale-95 transition-all"
+            className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-500 shadow-sm active:scale-[0.99] transition-all"
           >
             <Save className="w-4 h-4" />
             <span>{loading ? 'Saving Changes...' : 'Save Profile Changes'}</span>

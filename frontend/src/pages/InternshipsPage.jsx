@@ -8,7 +8,6 @@ import {
   MapPin,
   Clock,
   ExternalLink,
-  Building,
 } from 'lucide-react';
 import api from '../services/api';
 import SearchFilterBar from '../components/SearchFilterBar';
@@ -16,16 +15,17 @@ import OpportunityModal from '../components/OpportunityModal';
 import { useBookmarks } from '../context/BookmarkContext';
 
 const INTERNSHIP_SKILLS = [
-  'React',
   'TypeScript',
+  'React',
   'Python',
-  'Node.js',
+  'PyTorch',
   'Go',
   'Rust',
-  'PyTorch',
-  'Figma',
-  'Kubernetes',
+  'C++',
+  'Node.js',
+  'Distributed Systems',
   'Docker',
+  'Robotics',
 ];
 
 const InternshipsPage = () => {
@@ -94,15 +94,15 @@ const InternshipsPage = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-wider mb-2">
-          <Briefcase className="w-4 h-4" />
-          <span>Engineering Internships</span>
+        <div className="flex items-center gap-1.5 text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
+          <Briefcase className="w-3.5 h-3.5" />
+          <span>Careers Directory</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Explore Student Internships
+        <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          Software & Systems Internships
         </h1>
-        <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-          Apply to paid, verified software engineering, AI research, and infrastructure internships across premier tech firms.
+        <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
+          Apply to paid, verified engineering, AI research, and infrastructure internships across top tech companies.
         </p>
       </div>
 
@@ -144,16 +144,16 @@ const InternshipsPage = () => {
           {[1, 2, 3, 4, 5, 6].map((n) => (
             <div
               key={n}
-              className="glass-panel rounded-2xl h-72 animate-pulse p-6 bg-slate-900/40"
+              className="card-base rounded-2xl h-72 animate-pulse p-6"
             />
           ))}
         </div>
       ) : internships.length === 0 ? (
-        <div className="glass-panel rounded-2xl p-12 text-center max-w-md mx-auto my-12 space-y-4">
-          <div className="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center mx-auto">
+        <div className="card-base rounded-2xl p-12 text-center max-w-md mx-auto my-12 space-y-4">
+          <div className="w-12 h-12 rounded-xl bg-blue-600/10 text-blue-400 flex items-center justify-center mx-auto border border-blue-500/20">
             <Briefcase className="w-6 h-6" />
           </div>
-          <h3 className="text-base font-bold text-white">No Internships Found</h3>
+          <h3 className="text-sm font-bold text-white">No Internships Found</h3>
           <p className="text-xs text-slate-400">
             No roles matched your current filter criteria. Try clearing search filters to see all available roles.
           </p>
@@ -172,7 +172,7 @@ const InternshipsPage = () => {
             return (
               <div
                 key={internship._id}
-                className="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between"
+                className="card-interactive p-6 flex flex-col justify-between"
               >
                 <div>
                   {/* Top Row: Company Info & Bookmark */}
@@ -182,10 +182,10 @@ const InternshipsPage = () => {
                         <img
                           src={internship.logoUrl}
                           alt={internship.company}
-                          className="w-12 h-12 rounded-xl object-cover border border-slate-700 bg-slate-800 p-1"
+                          className="w-11 h-11 rounded-xl object-cover border border-navy-800 bg-navy-950 p-1"
                         />
                       ) : (
-                        <div className="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold">
+                        <div className="w-11 h-11 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs">
                           {internship.company.substring(0, 2)}
                         </div>
                       )}
@@ -207,15 +207,15 @@ const InternshipsPage = () => {
 
                     <button
                       onClick={() => toggleBookmark('internship', internship)}
-                      className="p-2 rounded-xl bg-slate-800/80 text-slate-400 hover:text-amber-400 transition-colors"
+                      className="p-2 rounded-lg bg-navy-950 text-slate-400 hover:text-amber-400 transition-colors border border-navy-800"
                       title={saved ? 'Remove Bookmark' : 'Save Bookmark'}
                     >
-                      <Bookmark className={`w-4 h-4 ${saved ? 'fill-amber-400 text-amber-400' : ''}`} />
+                      <Bookmark className={`w-3.5 h-3.5 ${saved ? 'fill-amber-400 text-amber-400' : ''}`} />
                     </button>
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="text-base font-bold text-slate-100 mb-2 line-clamp-1">
+                  <h3 className="text-sm font-bold text-slate-100 mb-2 line-clamp-1">
                     {internship.title}
                   </h3>
                   <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">
@@ -223,7 +223,7 @@ const InternshipsPage = () => {
                   </p>
 
                   {/* Key Specs Pill Row */}
-                  <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-300 mb-4 p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
+                  <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-300 mb-4 p-2.5 rounded-xl bg-navy-950 border border-navy-800">
                     <div className="flex items-center gap-1.5 truncate">
                       <DollarSign className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       <span className="font-semibold text-emerald-400 truncate">
@@ -241,13 +241,13 @@ const InternshipsPage = () => {
                     {internship.skills?.slice(0, 3).map((skill, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-800 text-slate-300 border border-slate-700/50"
+                        className="px-2 py-0.5 rounded text-[11px] font-medium badge-slate"
                       >
                         {skill}
                       </span>
                     ))}
                     {internship.skills?.length > 3 && (
-                      <span className="px-1.5 py-0.5 rounded-md text-[10px] text-slate-500 font-semibold">
+                      <span className="px-1.5 py-0.5 rounded text-[10px] text-slate-500 font-semibold">
                         +{internship.skills.length - 3}
                       </span>
                     )}
@@ -255,16 +255,16 @@ const InternshipsPage = () => {
                 </div>
 
                 {/* Footer Action */}
-                <div className="pt-4 mt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-1.5 text-slate-400">
-                    <Calendar className="w-3.5 h-3.5 text-purple-400" />
+                <div className="pt-4 mt-2 border-t border-navy-800 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-1 text-slate-400">
+                    <Calendar className="w-3.5 h-3.5 text-blue-400" />
                     <span>Due: {formatDate(internship.applicationDeadline)}</span>
                   </div>
 
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => setSelectedInternship(internship)}
-                      className="px-3 py-1.5 rounded-lg font-semibold text-xs text-blue-300 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 transition-all"
+                      className="px-3 py-1.5 rounded-lg font-semibold text-xs text-blue-300 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/25 transition-all"
                     >
                       Requirements
                     </button>
@@ -272,10 +272,10 @@ const InternshipsPage = () => {
                       href={internship.applyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
-                      title="Apply on Company Website"
+                      className="p-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300 hover:text-white transition-colors"
+                      title="Apply on Official Portal"
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 </div>

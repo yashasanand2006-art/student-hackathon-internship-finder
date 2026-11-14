@@ -33,7 +33,7 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center">
-        <div className="w-8 h-8 rounded-full border-2 border-purple-500 border-t-transparent animate-spin" />
+        <div className="w-8 h-8 rounded-full border-2 border-blue-500 border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -52,7 +52,7 @@ const AdminRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center">
-        <div className="w-8 h-8 rounded-full border-2 border-purple-500 border-t-transparent animate-spin" />
+        <div className="w-8 h-8 rounded-full border-2 border-blue-500 border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -73,7 +73,7 @@ function App() {
     <Router>
       <AuthProvider>
         <BookmarkProvider>
-          <div className="flex flex-col min-h-screen bg-[#0B0F19] text-slate-100">
+          <div className="flex flex-col min-h-screen bg-navy-950 text-slate-100 selection:bg-blue-500 selection:text-white">
             <ScrollToTop />
             <Navbar />
             <main className="flex-grow">

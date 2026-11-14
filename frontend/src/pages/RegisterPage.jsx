@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserPlus, Sparkles, AlertCircle, Mail, Lock, User, GraduationCap, Building } from 'lucide-react';
+import { UserPlus, AlertCircle, Mail, Lock, User, GraduationCap, Building, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const RegisterPage = () => {
@@ -45,21 +45,21 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md glass-panel rounded-3xl p-8 sm:p-10 shadow-2xl relative border border-slate-700/80">
+      <div className="w-full max-w-md card-base rounded-2xl p-8 sm:p-10 shadow-elevated relative">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center shadow-glow-purple mx-auto mb-4">
-            <UserPlus className="w-6 h-6 text-white" />
+          <div className="w-11 h-11 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mx-auto mb-3">
+            <UserPlus className="w-5 h-5" />
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
             Create Your Account
           </h1>
-          <p className="text-xs text-slate-400 mt-1.5">
-            Join the DevNexus network and discover high-impact developer opportunities
+          <p className="text-xs text-slate-400 mt-1">
+            Join DevNexus and discover verified student engineering opportunities
           </p>
         </div>
 
         {error && (
-          <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs mb-5 animate-in fade-in">
+          <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs mb-5 animate-in fade-in">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{error}</span>
           </div>
@@ -69,7 +69,7 @@ const RegisterPage = () => {
           {/* Account Role Selector */}
           <div>
             <label className="block text-slate-300 font-semibold mb-1.5">
-              I am joining as a:
+              Account Type
             </label>
             <div className="grid grid-cols-2 gap-2">
               <button
@@ -77,8 +77,8 @@ const RegisterPage = () => {
                 onClick={() => setFormData({ ...formData, role: 'student' })}
                 className={`py-2 px-3 rounded-xl font-bold flex items-center justify-center gap-2 border transition-all ${
                   formData.role === 'student'
-                    ? 'bg-purple-600 text-white border-purple-500 shadow-glow-purple'
-                    : 'bg-slate-950 text-slate-400 border-slate-800'
+                    ? 'bg-blue-600 text-white border-blue-500 shadow-sm'
+                    : 'bg-navy-950 text-slate-400 border-navy-800'
                 }`}
               >
                 <GraduationCap className="w-4 h-4" />
@@ -89,8 +89,8 @@ const RegisterPage = () => {
                 onClick={() => setFormData({ ...formData, role: 'admin' })}
                 className={`py-2 px-3 rounded-xl font-bold flex items-center justify-center gap-2 border transition-all ${
                   formData.role === 'admin'
-                    ? 'bg-purple-600 text-white border-purple-500 shadow-glow-purple'
-                    : 'bg-slate-950 text-slate-400 border-slate-800'
+                    ? 'bg-blue-600 text-white border-blue-500 shadow-sm'
+                    : 'bg-navy-950 text-slate-400 border-navy-800'
                 }`}
               >
                 <Building className="w-4 h-4" />
@@ -111,7 +111,7 @@ const RegisterPage = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Alex Rivera"
-                className="w-full pl-10 pr-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full pl-10 pr-3.5 py-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
           </div>
@@ -128,7 +128,7 @@ const RegisterPage = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="name@university.edu"
-                className="w-full pl-10 pr-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full pl-10 pr-3.5 py-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
           </div>
@@ -145,7 +145,7 @@ const RegisterPage = () => {
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full pl-10 pr-3.5 py-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
           </div>
@@ -160,7 +160,7 @@ const RegisterPage = () => {
                 value={formData.university}
                 onChange={(e) => setFormData({ ...formData, university: e.target.value })}
                 placeholder="e.g. Stanford"
-                className="w-full px-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500"
+                className="w-full px-3 py-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-blue-500"
               />
             </div>
             <div>
@@ -171,8 +171,8 @@ const RegisterPage = () => {
                 type="text"
                 value={formData.major}
                 onChange={(e) => setFormData({ ...formData, major: e.target.value })}
-                placeholder="e.g. CS / EECS"
-                className="w-full px-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500"
+                placeholder="e.g. Computer Science"
+                className="w-full px-3 py-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -180,9 +180,10 @@ const RegisterPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-2 py-3 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:brightness-110 active:scale-95 shadow-glow-purple transition-all"
+            className="w-full mt-2 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-500 shadow-sm active:scale-[0.99] transition-all flex items-center justify-center gap-2"
           >
-            {loading ? 'Creating Account...' : 'Complete Registration'}
+            <span>{loading ? 'Creating Account...' : 'Complete Registration'}</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </form>
 
@@ -190,7 +191,7 @@ const RegisterPage = () => {
           Already have an account?{' '}
           <Link
             to="/login"
-            className="text-purple-400 hover:text-purple-300 font-semibold"
+            className="text-blue-400 hover:text-blue-300 font-semibold"
           >
             Sign in here
           </Link>

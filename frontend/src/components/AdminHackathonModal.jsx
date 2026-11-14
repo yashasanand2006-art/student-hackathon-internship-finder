@@ -15,7 +15,7 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
     startDate: '',
     endDate: '',
     registrationDeadline: '',
-    tags: 'AI/ML, Python, Cloud',
+    tags: 'Artificial Intelligence, Machine Learning, Python',
     maxTeamSize: 4,
     websiteUrl: '',
     bannerUrl: '',
@@ -62,10 +62,10 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
         startDate: new Date().toISOString().substring(0, 10),
         endDate: new Date(Date.now() + 86400000 * 3).toISOString().substring(0, 10),
         registrationDeadline: new Date(Date.now() + 86400000 * 2).toISOString().substring(0, 10),
-        tags: 'AI/ML, Python, Cloud',
+        tags: 'Artificial Intelligence, Machine Learning, Python',
         maxTeamSize: 4,
         websiteUrl: '',
-        bannerUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+        bannerUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
         status: 'Open',
         featured: false,
       });
@@ -111,31 +111,31 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl p-6 sm:p-8 my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-150">
+      <div className="relative w-full max-w-2xl bg-navy-900 border border-navy-800 rounded-2xl shadow-elevated p-6 sm:p-8 my-8">
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white"
+          className="absolute top-5 right-5 p-2 rounded-xl bg-navy-800 text-slate-400 hover:text-white"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-purple-400">
+          <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
             <Trophy className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white">
-              {hackathon ? 'Edit Hackathon Listing' : 'Publish New Hackathon'}
+            <h2 className="text-lg font-bold text-white">
+              {hackathon ? 'Edit Hackathon Listing' : 'Publish Verified Hackathon'}
             </h2>
             <p className="text-xs text-slate-400">
-              Admin controls to add or update verified collegiate hackathons
+              Manage dates, prizes, and application requirements
             </p>
           </div>
         </div>
 
         {error && (
-          <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs mb-5">
+          <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs mb-5">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{error}</span>
           </div>
@@ -152,21 +152,21 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
                 required
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
-                placeholder="e.g. HackAI Global 2026"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
+                placeholder="e.g. Stanford TreeHacks 2027"
               />
             </div>
             <div>
               <label className="block text-slate-300 font-semibold mb-1">
-                Organizer Name *
+                Host / Organizer *
               </label>
               <input
                 type="text"
                 required
                 value={formData.organizer}
                 onChange={(e) => setFormData({ ...formData, organizer: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
-                placeholder="e.g. Stanford ACM & Google"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
+                placeholder="e.g. Stanford University & ACM"
               />
             </div>
           </div>
@@ -177,8 +177,8 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
               type="text"
               value={formData.tagline}
               onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
-              className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
-              placeholder="Short punchy tagline for cards"
+              className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
+              placeholder="Short descriptive tagline for cards"
             />
           </div>
 
@@ -191,18 +191,18 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
               rows={3}
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 focus:outline-none focus:border-purple-500"
-              placeholder="Full hackathon details, rules, tracks, and travel stipend info"
+              className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100 focus:outline-none focus:border-blue-500"
+              placeholder="Full hackathon details, track requirements, and mentorship info"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Mode</label>
+              <label className="block text-slate-300 font-semibold mb-1">Format</label>
               <select
                 value={formData.mode}
                 onChange={(e) => setFormData({ ...formData, mode: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-200"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-200"
               >
                 <option value="Online">Online</option>
                 <option value="In-Person">In-Person</option>
@@ -217,8 +217,8 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
                 type="text"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100"
-                placeholder="e.g. San Francisco, CA"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100"
+                placeholder="e.g. Stanford, CA"
               />
             </div>
             <div>
@@ -230,7 +230,7 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
                 min="0"
                 value={formData.prizePool}
                 onChange={(e) => setFormData({ ...formData, prizePool: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100"
               />
             </div>
           </div>
@@ -238,7 +238,7 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="block text-slate-300 font-semibold mb-1">
-                Reg Deadline *
+                Registration Deadline *
               </label>
               <input
                 type="date"
@@ -247,7 +247,7 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
                 onChange={(e) =>
                   setFormData({ ...formData, registrationDeadline: e.target.value })
                 }
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100"
               />
             </div>
             <div>
@@ -259,7 +259,7 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
                 required
                 value={formData.startDate}
                 onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100"
               />
             </div>
             <div>
@@ -271,7 +271,7 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
                 required
                 value={formData.endDate}
                 onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100"
               />
             </div>
           </div>
@@ -279,27 +279,27 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-slate-300 font-semibold mb-1">
-                Website / Devpost URL *
+                Website / Devpost Portal *
               </label>
               <input
                 type="url"
                 required
                 value={formData.websiteUrl}
                 onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100"
                 placeholder="https://..."
               />
             </div>
             <div>
               <label className="block text-slate-300 font-semibold mb-1">
-                Tags (comma separated)
+                Tracks (comma separated)
               </label>
               <input
                 type="text"
                 value={formData.tags}
                 onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
-                className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100"
-                placeholder="AI/ML, Web3, Python"
+                className="w-full p-2.5 bg-navy-950 border border-navy-800 rounded-xl text-slate-100"
+                placeholder="Artificial Intelligence, Robotics, Python"
               />
             </div>
           </div>
@@ -310,7 +310,7 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
                 type="checkbox"
                 checked={formData.featured}
                 onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-                className="w-4 h-4 rounded text-purple-600 bg-slate-950 border-slate-800 focus:ring-0"
+                className="w-4 h-4 rounded text-blue-600 bg-navy-950 border-navy-800 focus:ring-0"
               />
               Mark as Featured Opportunity
             </label>
@@ -320,7 +320,7 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="p-1.5 bg-slate-950 border border-slate-800 rounded-lg text-slate-200 text-xs"
+                className="p-1.5 bg-navy-950 border border-navy-800 rounded-lg text-slate-200 text-xs"
               >
                 <option value="Open">Open</option>
                 <option value="Upcoming">Upcoming</option>
@@ -329,21 +329,21 @@ const AdminHackathonModal = ({ hackathon, isOpen, onClose, onSuccess }) => {
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 pt-5 border-t border-slate-800">
+          <div className="flex justify-end gap-3 pt-5 border-t border-navy-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white"
+              className="px-4 py-2 rounded-xl bg-navy-800 text-slate-300 hover:text-white"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center gap-2 px-5 py-2 rounded-xl font-bold text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:brightness-110 shadow-glow-purple"
+              className="flex items-center gap-2 px-5 py-2 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-sm"
             >
               <Save className="w-4 h-4" />
-              <span>{loading ? 'Saving...' : hackathon ? 'Update Hackathon' : 'Create Hackathon'}</span>
+              <span>{loading ? 'Saving...' : hackathon ? 'Update Hackathon' : 'Publish Listing'}</span>
             </button>
           </div>
         </form>

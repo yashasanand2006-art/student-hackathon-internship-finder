@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Code2, Github, Heart, Server, ShieldCheck, Zap } from 'lucide-react';
+import { Compass, ShieldCheck, Server, Terminal, Github, ExternalLink } from 'lucide-react';
 import api from '../services/api';
 
 const Footer = () => {
@@ -19,31 +19,31 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="w-full bg-[#070A12] border-t border-slate-800/80 pt-12 pb-8 text-slate-400">
+    <footer className="w-full bg-navy-950 border-t border-navy-800 pt-14 pb-10 text-slate-400 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
           {/* Brand Info */}
-          <div className="space-y-4 md:col-span-1">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center shadow-glow-purple">
-                <Code2 className="w-4 h-4 text-white" />
+          <div className="md:col-span-2 space-y-4">
+            <Link to="/" className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-sm">
+                <Compass className="w-4 h-4" />
               </div>
-              <span className="font-bold text-lg text-white">DevNexus</span>
+              <span className="font-bold text-base text-white tracking-tight">DevNexus</span>
             </Link>
-            <p className="text-xs leading-relaxed text-slate-400">
-              The premier opportunity discovery engine for collegiate software engineers, hackers, and researchers worldwide.
+            <p className="text-xs leading-relaxed text-slate-400 max-w-sm">
+              The premier opportunity discovery engine for collegiate engineers, researchers, and builders. Curated hackathons and high-compensation internships verified by campus ambassadors.
             </p>
             {/* Real-time system health pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-900 border border-navy-800 text-[11px]">
               <span
                 className={`w-2 h-2 rounded-full ${
                   healthStatus?.status === 'online'
-                    ? 'bg-emerald-400 animate-pulse'
+                    ? 'bg-emerald-400'
                     : 'bg-rose-500'
                 }`}
               ></span>
               <span className="text-slate-300 font-medium">
-                {healthStatus?.database?.mode || 'Connecting to REST API...'}
+                Engine: {healthStatus?.database?.mode || 'Active'}
               </span>
             </div>
           </div>
@@ -53,87 +53,96 @@ const Footer = () => {
             <h4 className="text-xs font-bold tracking-wider uppercase text-slate-200 mb-4">
               Explore
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2.5 text-xs">
               <li>
-                <Link to="/hackathons" className="hover:text-purple-400 transition-colors">
-                  Browse Hackathons
+                <Link to="/hackathons" className="text-slate-400 hover:text-white transition-colors">
+                  All Hackathons
                 </Link>
               </li>
               <li>
-                <Link to="/internships" className="hover:text-blue-400 transition-colors">
-                  Top Tech Internships
+                <Link to="/internships" className="text-slate-400 hover:text-white transition-colors">
+                  Software Internships
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard" className="hover:text-emerald-400 transition-colors">
+                <Link to="/bookmarks" className="text-slate-400 hover:text-white transition-colors">
+                  Saved Radar
+                </Link>
+              </li>
+              <li>
+                <Link to="/dashboard" className="text-slate-400 hover:text-white transition-colors">
                   Student Dashboard
                 </Link>
               </li>
-              <li>
-                <Link to="/bookmarks" className="hover:text-amber-400 transition-colors">
-                  Saved Bookmarks
-                </Link>
-              </li>
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Technology Tracks */}
           <div>
             <h4 className="text-xs font-bold tracking-wider uppercase text-slate-200 mb-4">
-              Categories
+              Focus Areas
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2.5 text-xs">
               <li>
-                <Link to="/hackathons?tag=AI/ML" className="hover:text-slate-200">
-                  Artificial Intelligence & LLMs
+                <Link to="/hackathons?tag=Artificial%20Intelligence" className="text-slate-400 hover:text-white transition-colors">
+                  Artificial Intelligence
                 </Link>
               </li>
               <li>
-                <Link to="/internships?type=Remote" className="hover:text-slate-200">
-                  Remote Engineering Roles
+                <Link to="/hackathons?tag=Robotics" className="text-slate-400 hover:text-white transition-colors">
+                  Robotics & Systems
                 </Link>
               </li>
               <li>
-                <Link to="/hackathons?mode=In-Person" className="hover:text-slate-200">
-                  In-Person Collegiate Jams
+                <Link to="/internships?type=Remote" className="text-slate-400 hover:text-white transition-colors">
+                  Remote Engineering
                 </Link>
               </li>
               <li>
-                <Link to="/internships?skill=React" className="hover:text-slate-200">
-                  Frontend & Full-Stack Jobs
+                <Link to="/hackathons?tag=Cybersecurity" className="text-slate-400 hover:text-white transition-colors">
+                  Cybersecurity
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Stack & Credentials */}
+          {/* Verified Standards */}
           <div>
             <h4 className="text-xs font-bold tracking-wider uppercase text-slate-200 mb-4">
-              Production Architecture
+              Platform Standards
             </h4>
             <div className="space-y-2 text-xs text-slate-400">
-              <div className="flex items-center gap-1.5 text-slate-300">
-                <ShieldCheck className="w-4 h-4 text-purple-400" />
-                <span>JWT Auth & Bcrypt Security</span>
+              <div className="flex items-center gap-2 text-slate-300">
+                <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
+                <span>Verified Deadlines</span>
               </div>
-              <div className="flex items-center gap-1.5 text-slate-300">
-                <Server className="w-4 h-4 text-blue-400" />
-                <span>Express REST APIs & Mongoose</span>
+              <div className="flex items-center gap-2 text-slate-300">
+                <Server className="w-3.5 h-3.5 text-slate-400" />
+                <span>Direct Application Links</span>
               </div>
-              <div className="flex items-center gap-1.5 text-slate-300">
-                <Zap className="w-4 h-4 text-emerald-400" />
-                <span>Tailwind CSS & React Router</span>
+              <div className="flex items-center gap-2 text-slate-300">
+                <Terminal className="w-3.5 h-3.5 text-slate-400" />
+                <span>Fair Compensation Standards</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© 2026 DevNexus Platform. Engineered for aspiring builders.</p>
-          <div className="flex items-center gap-4">
-            <span className="text-slate-400 flex items-center gap-1">
-              Built with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for Developers
-            </span>
+        <div className="border-t border-navy-800 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+          <p>© 2026 DevNexus Technologies Inc. All opportunities verified for students.</p>
+          <div className="flex items-center gap-6">
+            <Link to="/hackathons" className="hover:text-slate-300 transition-colors">
+              Terms & Privacy
+            </Link>
+            <a
+              href="https://github.com/yashasanand2006-art/student-hackathon-internship-finder"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-slate-300 flex items-center gap-1 transition-colors"
+            >
+              <span>GitHub Source</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
         </div>
       </div>

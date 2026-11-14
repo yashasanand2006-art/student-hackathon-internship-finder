@@ -8,7 +8,6 @@ import {
   Users,
   MapPin,
   ExternalLink,
-  Sparkles,
 } from 'lucide-react';
 import api from '../services/api';
 import SearchFilterBar from '../components/SearchFilterBar';
@@ -16,17 +15,17 @@ import OpportunityModal from '../components/OpportunityModal';
 import { useBookmarks } from '../context/BookmarkContext';
 
 const HACKATHON_TAGS = [
-  'AI/ML',
-  'Web3',
-  'LLMs',
+  'Artificial Intelligence',
+  'Machine Learning',
+  'Robotics',
+  'Web Development',
   'Python',
+  'C++',
   'Rust',
-  'Full Stack',
-  'Solidity',
-  'HealthTech',
   'Cybersecurity',
-  'Cloud',
+  'Data Science',
   'Open Source',
+  'Web3',
 ];
 
 const HackathonsPage = () => {
@@ -95,15 +94,15 @@ const HackathonsPage = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider mb-2">
-          <Trophy className="w-4 h-4" />
-          <span>Collegiate Competitions</span>
+        <div className="flex items-center gap-1.5 text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
+          <Trophy className="w-3.5 h-3.5" />
+          <span>Competitions Directory</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Explore Student Hackathons
+        <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          Collegiate Hackathons
         </h1>
-        <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-          Browse vetted virtual and in-person hackathons offering prize pools, travel stipends, and sponsor mentorship.
+        <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
+          Discover verified university hackathons offering prize pools, travel stipends, and sponsor mentorship.
         </p>
       </div>
 
@@ -146,22 +145,22 @@ const HackathonsPage = () => {
           {[1, 2, 3, 4, 5, 6].map((n) => (
             <div
               key={n}
-              className="glass-panel rounded-2xl h-80 animate-pulse p-6 bg-slate-900/40"
+              className="card-base rounded-2xl h-80 animate-pulse p-6"
             />
           ))}
         </div>
       ) : hackathons.length === 0 ? (
-        <div className="glass-panel rounded-2xl p-12 text-center max-w-md mx-auto my-12 space-y-4">
-          <div className="w-12 h-12 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center mx-auto">
+        <div className="card-base rounded-2xl p-12 text-center max-w-md mx-auto my-12 space-y-4">
+          <div className="w-12 h-12 rounded-xl bg-blue-600/10 text-blue-400 flex items-center justify-center mx-auto border border-blue-500/20">
             <Trophy className="w-6 h-6" />
           </div>
-          <h3 className="text-base font-bold text-white">No Hackathons Found</h3>
+          <h3 className="text-sm font-bold text-white">No Hackathons Found</h3>
           <p className="text-xs text-slate-400">
             No events matched your current search and filter combination. Try resetting your search filters.
           </p>
           <button
             onClick={handleResetFilters}
-            className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-purple-600 hover:bg-purple-500 transition-colors"
+            className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 transition-colors"
           >
             Clear All Filters
           </button>
@@ -174,37 +173,37 @@ const HackathonsPage = () => {
             return (
               <div
                 key={hackathon._id}
-                className="glass-panel glass-panel-hover rounded-2xl overflow-hidden flex flex-col justify-between"
+                className="card-interactive overflow-hidden flex flex-col justify-between"
               >
                 <div>
                   {/* Card Banner */}
-                  <div className="relative h-44 w-full bg-slate-800">
+                  <div className="relative h-44 w-full bg-navy-950">
                     <img
                       src={
                         hackathon.bannerUrl ||
-                        'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'
+                        'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80'
                       }
                       alt={hackathon.title}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent" />
 
                     {/* Mode badge */}
-                    <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-900/80 backdrop-blur-md text-purple-300 border border-purple-500/30">
+                    <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-navy-950/90 text-blue-300 border border-navy-700">
                       {hackathon.mode}
                     </span>
 
                     {/* Bookmark Toggle */}
                     <button
                       onClick={() => toggleBookmark('hackathon', hackathon)}
-                      className="absolute top-3 right-3 p-2 rounded-xl bg-slate-900/80 backdrop-blur-md text-slate-300 hover:text-amber-400 transition-colors"
+                      className="absolute top-3 right-3 p-2 rounded-lg bg-navy-950/90 text-slate-300 hover:text-amber-400 transition-colors border border-navy-700"
                       title={saved ? 'Remove Bookmark' : 'Save Bookmark'}
                     >
-                      <Bookmark className={`w-4 h-4 ${saved ? 'fill-amber-400 text-amber-400' : ''}`} />
+                      <Bookmark className={`w-3.5 h-3.5 ${saved ? 'fill-amber-400 text-amber-400' : ''}`} />
                     </button>
 
                     {/* Prize Badge */}
-                    <div className="absolute bottom-3 left-3 flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 backdrop-blur-md text-emerald-300 border border-emerald-500/30">
+                    <div className="absolute bottom-3 left-3 flex items-center gap-1 px-2.5 py-0.5 rounded-md text-xs font-bold bg-navy-950/90 text-emerald-400 border border-emerald-500/30">
                       <DollarSign className="w-3.5 h-3.5" />
                       <span>
                         {hackathon.prizePool ? `$${hackathon.prizePool.toLocaleString()}` : 'Free Entry'}
@@ -212,14 +211,14 @@ const HackathonsPage = () => {
                     </div>
 
                     {/* Status Pill */}
-                    <span className="absolute bottom-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-900/80 backdrop-blur-md text-slate-300 border border-slate-700">
+                    <span className="absolute bottom-3 right-3 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-navy-950/90 text-slate-300 border border-navy-700">
                       {hackathon.status}
                     </span>
                   </div>
 
                   {/* Body */}
                   <div className="p-5">
-                    <p className="text-xs text-purple-400 font-semibold mb-1">
+                    <p className="text-[11px] text-blue-400 font-semibold mb-1">
                       {hackathon.organizer}
                     </p>
                     <h3 className="text-base font-bold text-white mb-2 line-clamp-1">
@@ -230,13 +229,13 @@ const HackathonsPage = () => {
                     </p>
 
                     {/* Metadata items */}
-                    <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-400 mb-4 p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
+                    <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-400 mb-4 p-2.5 rounded-xl bg-navy-950 border border-navy-800">
                       <div className="flex items-center gap-1.5 truncate">
-                        <MapPin className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                        <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                         <span className="truncate">{hackathon.location}</span>
                       </div>
                       <div className="flex items-center gap-1.5 truncate">
-                        <Users className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                        <Users className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                         <span>Up to {hackathon.maxTeamSize || 4} Members</span>
                       </div>
                     </div>
@@ -246,13 +245,13 @@ const HackathonsPage = () => {
                       {hackathon.tags?.slice(0, 3).map((tag, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-800 text-slate-300 border border-slate-700/50"
+                          className="px-2 py-0.5 rounded text-[11px] font-medium badge-slate"
                         >
                           {tag}
                         </span>
                       ))}
                       {hackathon.tags?.length > 3 && (
-                        <span className="px-1.5 py-0.5 rounded-md text-[10px] text-slate-500 font-semibold">
+                        <span className="px-1.5 py-0.5 rounded text-[10px] text-slate-500 font-semibold">
                           +{hackathon.tags.length - 3}
                         </span>
                       )}
@@ -261,16 +260,16 @@ const HackathonsPage = () => {
                 </div>
 
                 {/* Footer Actions */}
-                <div className="px-5 pb-5 pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2 text-xs">
+                <div className="px-5 pb-5 pt-3 border-t border-navy-800 flex items-center justify-between gap-2 text-xs">
                   <div className="flex items-center gap-1.5 text-slate-400">
-                    <Calendar className="w-3.5 h-3.5 text-purple-400" />
+                    <Calendar className="w-3.5 h-3.5 text-blue-400" />
                     <span>Due: {formatDate(hackathon.registrationDeadline)}</span>
                   </div>
 
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => setSelectedHackathon(hackathon)}
-                      className="px-3 py-1.5 rounded-lg font-semibold text-xs text-purple-300 bg-purple-600/10 hover:bg-purple-600/20 border border-purple-500/30 transition-all"
+                      className="px-3 py-1.5 rounded-lg font-semibold text-xs text-blue-300 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/25 transition-all"
                     >
                       Details
                     </button>
@@ -278,10 +277,10 @@ const HackathonsPage = () => {
                       href={hackathon.websiteUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                      className="p-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300 hover:text-white transition-colors"
                       title="Open External Site"
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 </div>
