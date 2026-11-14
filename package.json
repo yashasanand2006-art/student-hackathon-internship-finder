@@ -1,0 +1,13 @@
+{
+  "name": "opportunity-nexus-platform",
+  "version": "1.0.0",
+  "description": "Full-Stack Student Hackathon and Internship Finder Platform",
+  "private": true,
+  "scripts": {
+    "start:backend": "node backend/server.js",
+    "test:backend": "node backend/test-api.js",
+    "seed:backend": "node backend/utils/seedData.js",
+    "dev:frontend": "cd frontend && npm.cmd run dev",
+    "build:frontend": "cd frontend && npm.cmd run build"
+  }
+}
